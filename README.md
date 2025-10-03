@@ -1,2 +1,6 @@
-# summer-school-2025-teachers
-Teachers version of the summer school files
+# Summer school 2025 - teachers files
+
+To access, use e.g.:
+
+
+
