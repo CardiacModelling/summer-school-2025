@@ -1,4 +1,4 @@
-# Summer school 2025 - teachers files
+# Summer school 2025
 
 To access, use e.g.:
 
