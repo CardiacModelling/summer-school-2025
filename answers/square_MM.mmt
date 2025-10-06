@@ -1,0 +1,39 @@
+[[model]]
+# Initial values
+ikr.O = 0 #Open
+ikr.CI = 0 #Closed Inactive
+ikr.I = 0 #Inactive
+ikr.C = 1 #Closed
+
+[ikr]
+# Voltage-dependent transition rates
+alpha_a = p1 * exp(p2 * membrane.V)
+beta_a = p3 * exp(-p4 * membrane.V)
+alpha_r = p7 * exp(-p8 * membrane.V)
+beta_r = p5 * exp(p6 * membrane.V)
+
+# Transition rate parameters
+p1 = 2.1e-3
+p2 = 7.2e-2
+p3 = 3.5e-5
+p4 = 6.2e-2
+p5 = 4.2e-1
+p6 = 2.6e-2
+p7 = 4.8e-2
+p8 = 2.5e-2
+
+# System of ODEs 
+dot(O) = -beta_a * O + alpha_a * C + alpha_r * I - beta_r * O
+dot(C) = - beta_r * C + alpha_r * CI - alpha_a * C + beta_a * O
+dot(CI) = -alpha_a * CI + beta_a * I + beta_r * C - alpha_r * CI
+dot(I) = -alpha_r * I + beta_r * O + alpha_a * CI - beta_a * I
+
+[engine]
+time = 0 bind time
+    in [ms]
+pace = 0 bind pace
+
+[membrane]
+V = engine.pace
+    desc: membrane potential
+    in [mV]
