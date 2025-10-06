@@ -1,20 +1,16 @@
 [[model]]
-# Initial values (first gate)
-ikr.O1 = 0
-ikr.C = 1
-
-# Initial values (second gate)
-ikr.O2 = 0
-ikr.I = 1
+# Initial values
+ikr.a = 0 #activation
+ikr.r = 0 #recovery
 
 [ikr]
-# Voltage-dependent transition rates (first gate)
-k12 = p1 * exp(p2 * membrane.V)
-k21 = p3 * exp(-p4 * membrane.V)
+# Voltage-dependent transition rates (activation)
+alpha_a = p1 * exp(p2 * membrane.V)
+beta_a = p3 * exp(-p4 * membrane.V)
 
-# Voltage-dependent transition rates (second gate)
-k14 = p7 * exp(-p8 * membrane.V)
-k41 = p5 * exp(p6 * membrane.V)
+# Voltage-dependent transition rates (recovery)
+alpha_r = p7 * exp(-p8 * membrane.V)
+beta_r = p5 * exp(p6 * membrane.V)
 
 # Transition rate parameters
 p1 = 2.1e-3
@@ -26,13 +22,11 @@ p6 = 2.6e-2
 p7 = 4.8e-2
 p8 = 2.5e-2
 
-# System of ODEs (first gate)
-dot(O1) = -k21 * O1 + k12 * C
-dot(C) = k21 * O1 - k12 * C
+# System of ODEs (activation)
+dot(a) = alpha_a * (1-a) - beta_a * a
 
-# System of ODEs (second gate)
-dot(O2) = -k41 * O2 + k14 * I
-dot(I) = k41 * O2 - k14 * I
+# System of ODEs (recovery)
+dot(r) = alpha_r * (1-r) - beta_r * r
 
 [engine]
 time = 0 bind time

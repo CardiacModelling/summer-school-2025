@@ -1,12 +1,11 @@
 [[model]]
 # Initial values
 ikr.O = 0
-ikr.C = 1
 
 [ikr]
 # Voltage-dependent transition rates
-k12 = p1 * exp(p2 * membrane.V)
-k21 = p3 * exp(-p4 * membrane.V)
+alpha = p1 * exp(p2 * membrane.V)
+beta = p3 * exp(-p4 * membrane.V)
 
 # Transition rate parameters
 p1 = 2.1e-3
@@ -14,9 +13,9 @@ p2 = 7.2e-2
 p3 = 3.5e-5
 p4 = 6.2e-2
 
-# System of ODEs
-dot(O) = -k21 * O + k12 * C
-dot(C) = k21 * O - k12 * C
+# Model ODE
+dot(O) = alpha * C - beta * O
+C = 1 - O
 
 [engine]
 time = 0 bind time
