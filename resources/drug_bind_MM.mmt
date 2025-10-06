@@ -24,11 +24,11 @@ p7 = 4.8e-2
 p8 = 2.5e-2
 
 # System of ODEs 
-dot(O) = -beta_a * O + alpha_a * C + alpha_r * I - beta_r * O - (kon * (D ^ hill) * O - koff * OD)
+dot(O) = -beta_a * O + alpha_a * C + alpha_r * I - beta_r * O  ### TODO: Complete the ODE for the Open state ### 
 dot(C) = - beta_r * C + alpha_r * CI - alpha_a * C + beta_a * O
 dot(CI) = -alpha_a * CI + beta_a * I + beta_r * C - alpha_r * CI
 dot(I) = -alpha_r * I + beta_r * O + alpha_a * CI - beta_a * I
-dot(OD) = kon * (D ^ hill) * O - koff * OD
+### TODO: Write the ODE for the Open Drug-bound state ### 
 
 # Drug binding rates
 kon = 1.4e-5
