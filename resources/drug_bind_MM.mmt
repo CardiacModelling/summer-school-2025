@@ -26,7 +26,7 @@ p8 = 2.5e-2
 dot(O) = -beta_a * O + alpha_a * C + alpha_r * I - beta_r * O ### TODO: Complete the ODE for the Open state ###
 dot(CI) = -alpha_a * CI + beta_a * I + beta_r * C - alpha_r * CI
 dot(I) = -alpha_r * I + beta_r * O + alpha_a * CI - beta_a * I
-### TODO: Complete the ODE for the Open state ###
+### TODO: Complete the ODE for the Open Drug-bound state ###
 C = 1 - O - CI - I - OD # Ensure sum of states equals 1
 
 # Drug binding rates
