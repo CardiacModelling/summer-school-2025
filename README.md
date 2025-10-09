@@ -9,3 +9,7 @@ The links below will open notebooks in Google Colab:
 These notebooks contain mistakes and errors when you try to run the code - this is intentional! The little tasks denoted where you see a pencil ( :pencil2: ) will tell you what you need to do to get things running properly. 
 
 You can later check the `answers` folder for the reference solutions.
+
+If you would like any help with Myokit in future please email michael@myokit.org
+
+If you would like to discuss building an ion channel model or related topics please do contact gary.mirams@nottingham.ac.uk
