@@ -4,8 +4,7 @@ desc: """
 """
 # Initial values
 ikr.a = 0
-# ikr.r = ... TODO
-ikr.r = 0
+#ikr.r = ... TODO
 
 [ikr]
 # Voltage-dependent transition rates (activation)
@@ -32,13 +31,11 @@ p8 = 2.5e-2 [1/mV] in [1/mV]
 
 # System of ODEs (activation and recovery)
 dot(a) = alpha_a * (1 - a) - beta_a * a
-# dot(r) = ... TODO
-dot(r) = alpha_r * (1 - r) - beta_r * r
+#dot(r) = ... TODO
 
 # Current
-# IKr = ... TODO
-IKr = g * a * r * (membrane.V - reversal.E)
-    in [pA]
+#IKr = ... TODO
+#    in [pA]
 g = 0.1524 [nS]
     in [nS]
     desc: The maximum conductance
