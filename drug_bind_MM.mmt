@@ -1,20 +1,16 @@
 [[model]]
-desc: """
-    A two-gate Hodgkin-Huxley model of the current IKr
-"""
 # Initial values
-ikr.a = 0
-# ikr.r = ... TODO
-ikr.r = 0
+ikr.C = 1
+ikr.O = 0
+ikr.I = 0
+ikr.OD = 0
 
 [ikr]
-# Voltage-dependent transition rates (activation)
+# Voltage-dependent transition rates
 alpha_a = p1 * exp(p2 * membrane.V)
     in [1/ms]
 beta_a = p3 * exp(-p4 * membrane.V)
     in [1/ms]
-
-# Voltage-dependent transition rates (recovery)
 alpha_r = p7 * exp(-p8 * membrane.V)
     in [1/ms]
 beta_r = p5 * exp(p6 * membrane.V)
@@ -30,14 +26,25 @@ p6 = 2.6e-2 [1/mV] in [1/mV]
 p7 = 4.8e-2 [1/ms] in [1/ms]
 p8 = 2.5e-2 [1/mV] in [1/mV]
 
-# System of ODEs (activation and recovery)
-dot(a) = alpha_a * (1 - a) - beta_a * a
-# dot(r) = ... TODO
-dot(r) = alpha_r * (1 - r) - beta_r * r
+# Drug binding rates
+kon = 1.4e-5 [1/ms] in [1/ms]
+koff = 4.1e-5 [1/ms] in [1/ms]
+
+# Hill coefficient
+hill = 1
+
+# Drug concentration (made dimensionless)
+D = 0
+
+# System of ODEs 
+dot(C) = beta_a * O - alpha_a * C + alpha_r * CI - beta_r * C
+dot(O) = alpha_a * C - beta_a * O + alpha_r * I - beta_r * O + koff * OD - kon * (D^hill) * O
+dot(I) = alpha_a * CI - beta_a * I + beta_r * O - alpha_r * I
+dot(OD) = kon * (D^hill) * O - koff * OD 
+CI = 1 - C - O - I - OD
 
 # Current
-# IKr = ... TODO
-IKr = g * a * r * (membrane.V - reversal.E)
+IKr = g * O * (membrane.V - reversal.E)
     in [pA]
 g = 0.1524 [nS]
     in [nS]

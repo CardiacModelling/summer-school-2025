@@ -32,11 +32,11 @@ p8 = 2.5e-2 [1/mV] in [1/mV]
 
 # System of ODEs (activation and recovery)
 dot(a) = alpha_a * (1 - a) - beta_a * a
-# dot(r) = ... TODO
+#dot(r) = ... TODO
 dot(r) = alpha_r * (1 - r) - beta_r * r
 
 # Current
-# IKr = ... TODO
+#IKr = ... TODO
 IKr = g * a * r * (membrane.V - reversal.E)
     in [pA]
 g = 0.1524 [nS]
